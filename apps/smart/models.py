@@ -1,5 +1,4 @@
-from distutils.command.upload import upload
-from turtle import update
+
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.forms import DateTimeField
