@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     'django_filters',
 
     'apps.account',
-    
+    'apps.order',
+    'apps.smart',
 
     
 
