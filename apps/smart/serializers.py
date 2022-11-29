@@ -28,7 +28,7 @@ class SmartSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         rep = super().to_representation(instance)
         rep['comments'] = CommentSerializer(
-            instance.comment.all(), many=True
+            instance.comments.all(), many=True
         ).data
         rep['carousel'] = SmartImageSerializer(
             instance.smart_images.all(), many=True).data
@@ -46,7 +46,7 @@ class SmartSerializer(serializers.ModelSerializer):
 class SmartListSerializers(serializers.ModelSerializer):
     class Meta:
         model = Smart
-        fields = ('image', 'title', 'price', 'in_stock', 'slug')
+        fields = ('image', 'title', 'price', 'in_stock',)
 
     def to_representation(self, instance):
         rep = super().to_representation(instance)
