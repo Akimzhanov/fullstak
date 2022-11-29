@@ -1,17 +1,18 @@
 from django.contrib import admin
-from .models import Category, Smart, SmartImage
+from .models import Category, Smart, SmartImage, Like, Rating
 
 
 class TabularInlineImage(admin.TabularInline):
     model = SmartImage
-    extra = 0
+    extra = 1
     fields = ['image']
 
 
-class LaptopAdmin(admin.ModelAdmin):
+class SmartAdmin(admin.ModelAdmin):
     model = Smart
-    inlines = [TabularInlineImage, ]
+    inlines = [TabularInlineImage]
 
 
-admin.site.register(Smart, LaptopAdmin)
+admin.site.register(Smart, SmartAdmin)
 admin.site.register(Category)
+admin.site.register([Like, Rating])
