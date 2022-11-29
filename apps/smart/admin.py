@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Smart, SmartImage, Like, Rating
+from .models import Category, Smart, SmartImage
 
 
 class TabularInlineImage(admin.TabularInline):
@@ -15,4 +15,3 @@ class SmartAdmin(admin.ModelAdmin):
 
 admin.site.register(Smart, SmartAdmin)
 admin.site.register(Category)
-admin.site.register([Like, Rating])
