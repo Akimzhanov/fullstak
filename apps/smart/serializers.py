@@ -1,3 +1,4 @@
+from dataclasses import field
 from rest_framework import serializers
 from .models import Smart, Category, Rating, Comment, Like, SmartImage
 from django.db.models import Avg 
@@ -8,7 +9,8 @@ class SmartSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Smart
-        exclude = ['slug', 'created_at', 'updated_at', 'category',]
+        exclude = ('slug', 'created_at', 'updated_at', 'category',)
+        # fields = '__all__'
 
     def validate_price(self, price):
         if price < 0:
@@ -94,7 +96,7 @@ class CommentSerializer(serializers.ModelSerializer):
 class SmartImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = SmartImage
-        fields = 'image'
+        fields = 'image',
 
 
 class RatingSerializer(serializers.ModelSerializer):
@@ -104,7 +106,7 @@ class RatingSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Rating
-        fields = ('rating', 'user', 'smart')
+        fields = ('rating', 'user', 'smart',)
 
     def validate(self, attrs):
         user = self.context.get('request').user
