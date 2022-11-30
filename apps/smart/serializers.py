@@ -10,7 +10,7 @@ class SmartSerializer(serializers.ModelSerializer):
     class Meta:
         model = Smart
         exclude = ('slug', 'created_at', 'updated_at', 'category',)
-        # fields = '__all__'
+        
 
     def validate_price(self, price):
         if price < 0:

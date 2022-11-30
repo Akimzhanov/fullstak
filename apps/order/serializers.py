@@ -13,7 +13,14 @@ class OrderSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Order
-        fields = ['id', 'created_at', 'address', 'total_sum', 'items']
+        fields = ['id', 'created_at', 'address', 'total_sum', 'items', 'card', 'last_name', 'first_name']
+
+    def validate_card(self, card):
+        if len(str(card)) != 16:
+            raise serializers.ValidationError('Карта дожна содержать 16 цифр!')
+        return card
+                
+                
 
     def create(self, validated_data):
         items = validated_data.pop('items')
