@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from pkg_resources import require
 from apps.smart.models import Smart
 
 User = get_user_model()
@@ -14,6 +15,9 @@ class Order(models.Model):
 
     created_at = models.DateTimeField(auto_now_add=True)
     address = models.CharField(max_length=150)
+    first_name = models.CharField(max_length=100,blank=True)
+    last_name = models.CharField(max_length=100, blank=True)
+    card = models.BigIntegerField()
     product = models.ManyToManyField(
         to=Smart,
         through='OrderItems'
