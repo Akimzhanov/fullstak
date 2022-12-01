@@ -91,7 +91,8 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://204.236.250.233",
+    "http://change.allowed.com",
+
 ]
 
 
@@ -104,8 +105,10 @@ CORS_ALLOW_METHODS = [
     "PUT",
 ]
 
-CORS_ALLOW_METHODS = list(default_methods) + [
-    "POKE",
+CORS_ORIGIN_WHITELIST = [
+    "https://127.0.0.1:3000",
+    "http://localhost:3030",
+    "https://204.236.250.233",
 ]
 
 CORS_ALLOW_HEADERS = [

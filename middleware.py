@@ -7,7 +7,6 @@ class CheckTime():
         self.get_response = get_response
 
     def __call__(self, request):
-        print('Hello')
         start = datetime.now()
         response: Response = self.get_response(request)
         end = datetime.now()
