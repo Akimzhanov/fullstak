@@ -10,6 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
+
+from corsheaders.defaults import default_headers
+from corsheaders.defaults import default_methods
 from datetime import timedelta
 from pathlib import Path
 from decouple import config
@@ -41,6 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    "corsheaders",
+
     'rest_framework',
     'drf_yasg',
     'rest_framework_simplejwt',
@@ -56,17 +61,69 @@ INSTALLED_APPS = [
     
 ]
 
+#
+
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    "corsheaders.middleware.CorsPostCsrfMiddleware",
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
+
+CORS_ALLOWED_ORIGINS = False
+
+
+CORS_ALLOWED_ORIGINS = [
+    "https://read.only.com",
+    "https://204.236.250.233",
+    "http://localhost:3000",
+    "http://127.0.0.1:9000",
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://204.236.250.233",
+]
+
+
+CORS_ALLOW_METHODS = [
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
+]
+
+CORS_ALLOW_METHODS = list(default_methods) + [
+    "POKE",
+]
+
+CORS_ALLOW_HEADERS = [
+    "accept",
+    "accept-encoding",
+    "authorization",
+    "content-type",
+    "dnt",
+    "origin",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
+]
+
+CORS_ALLOW_HEADERS = list(default_headers) + [
+    "delete",
+    "post",
+    'get',
+]
+
+
 
 TEMPLATES = [
     {
@@ -176,3 +233,10 @@ CELERY_BROKER_URL = 'redis://127.0.0.1:6379/0'
 CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379/0'
 
 
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': BASE_DIR / 'caches/',
+    }
+}
