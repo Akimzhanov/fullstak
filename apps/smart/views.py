@@ -29,8 +29,8 @@ class SmartViewSet(ModelViewSet):
     filter_backends = [filters.SearchFilter,
     rest_filter.DjangoFilterBackend,
     filters.OrderingFilter]
-    search_fields = ['title', 'price', 'user__username']
-
+    search_fields = ['title', 'ram',]
+    filterset_fields = ['category']
     ordering_fields = ['created_at']
 
     def perform_create(self, serializer):
