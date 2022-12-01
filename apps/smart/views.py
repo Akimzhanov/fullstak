@@ -6,6 +6,10 @@ from rest_framework import filters, status, mixins
 
 from django_filters import rest_framework as rest_filter
 
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
+from django.views.decorators.vary import vary_on_cookie
+
 from.serializers import (
     SmartCreateSerilizer,
     SmartListSerializers,
@@ -32,6 +36,9 @@ class SmartViewSet(ModelViewSet):
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
+
+    @method_decorator(cache_page(60*60*2))
+    @method_decorator(vary_on_cookie)
     def list(self, request, *args, **kwargs):
         return super().list(request, *args, **kwargs)
 
