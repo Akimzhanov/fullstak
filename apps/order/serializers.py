@@ -36,6 +36,8 @@ class OrderSerializer(serializers.ModelSerializer):
             )
             if item['product'].quantity < item['quantity']:
                 raise serializers.ValidationError('неверное количество')
+            if item['product'].quantity < 3:
+                item['product'].price = item['product'].price * (100 - 10) / 100
             orders_items.append(check)
             total_sum +=item['product'].price * item['quantity']
             item['product'].quantity -= item['quantity']

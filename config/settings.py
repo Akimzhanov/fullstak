@@ -84,10 +84,10 @@ CORS_ALLOWED_ORIGINS = False
 
 
 CORS_ALLOWED_ORIGINS = [
-    "https://read.only.com",
-    "https://204.236.250.233",
+    "http://read.only.com",
+    "http://204.236.250.233",
     "http://localhost:3000",
-    "http://127.0.0.1:9000",
+
 ]
 
 CSRF_TRUSTED_ORIGINS = [
@@ -106,9 +106,9 @@ CORS_ALLOW_METHODS = [
 ]
 
 CORS_ORIGIN_WHITELIST = [
-    "https://127.0.0.1:3000",
+    "http://127.0.0.1:3000",
     "http://localhost:3030",
-    "https://204.236.250.233",
+    "http://204.236.250.233",
 ]
 
 CORS_ALLOW_HEADERS = [

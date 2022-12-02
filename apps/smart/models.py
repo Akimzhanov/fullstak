@@ -46,6 +46,8 @@ class Smart(models.Model):
         to=Category,
         on_delete=models.CASCADE,
         related_name='smarts')
+
+
     
     def save(self, *args, **kwargs):
         self.in_stock = self.quantity > 0
