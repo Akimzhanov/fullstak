@@ -30,7 +30,7 @@ SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', cast=bool, default=False)
-
+SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='*').split(',')
 
 
@@ -54,6 +54,8 @@ INSTALLED_APPS = [
     'apps.account',
     'apps.order',
     'apps.smart',
+    'chat',
+    
     
 
     
@@ -134,7 +136,7 @@ CORS_ALLOW_HEADERS = list(default_headers) + [
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(SETTINGS_PATH, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -245,4 +247,36 @@ CACHES = {
         'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
         'LOCATION': BASE_DIR / 'caches/',
     }
+}
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'console': {
+            'format': '{module} {asctime} {levelname} {filename} {message}',
+            'style': '{'
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'ERROR',
+            'class': 'logging.StreamHandler',
+            'formatter': 'console',
+        },
+        'file': {
+            "class": "logging.FileHandler",
+            "formatter": "console",
+            'filename': 'information.log',
+        },
+
+    },
+    'loggers': {
+        'django.db.backends': {
+            'handlers': ['console', 'file'],
+            'level': 'DEBUG',
+            'propagate': True
+        },
+
+    },
 }
