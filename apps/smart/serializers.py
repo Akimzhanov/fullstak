@@ -48,7 +48,7 @@ class SmartSerializer(serializers.ModelSerializer):
 class SmartListSerializers(serializers.ModelSerializer):
     class Meta:
         model = Smart
-        fields = ('image', 'title', 'price', 'in_stock',)
+        fields = ('image', 'title', 'price', 'in_stock','slug')
 
     def to_representation(self, instance):
         rep = super().to_representation(instance)
