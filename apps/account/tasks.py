@@ -5,7 +5,7 @@ from config.celery import app
 
 @app.task
 def send_activation_code(email, activation_code):
-    activation_link = f'http://54.144.94.194/account/activate/{activation_code}/'
+    activation_link = f'http://34.239.103.140/account/activate/{activation_code}/'
     html_message = render_to_string(
         'account/code_mail.html', 
         {'activation_link': activation_link}
