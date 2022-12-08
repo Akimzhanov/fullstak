@@ -87,7 +87,7 @@ CORS_ALLOWED_ORIGINS = False
 
 CORS_ALLOWED_ORIGINS = [
     "http://read.only.com",
-    "http://44.211.41.141",
+    "http://54.144.94.194",
     "http://localhost:3000",
 
 ]
@@ -110,7 +110,7 @@ CORS_ALLOW_METHODS = [
 CORS_ORIGIN_WHITELIST = [
     "http://127.0.0.1:3000",
     "http://localhost:3030",
-    "http://44.211.41.141",
+    "http://54.144.94.194",
 ]
 
 CORS_ALLOW_HEADERS = [
