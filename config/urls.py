@@ -9,7 +9,7 @@ from django.conf import settings
 
 schema_view = get_schema_view(
    openapi.Info(
-      title="Snippets API",
+      title="Smart API",
       default_version='v1',
       description="Test description",
       terms_of_service="https://www.google.com/policies/terms/",
